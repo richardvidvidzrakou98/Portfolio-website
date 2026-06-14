@@ -1,17 +1,19 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Filter } from "lucide-react";
-import { projectsData } from "../data/projects";
+import { projectsData, type Project } from "../data/projects";
+import { ProjectCover } from "../components/ProjectCover";
 import { motion, AnimatePresence } from "motion/react";
 
-type FilterCategory = "All" | "Web" | "Cloud" | "AI" | "Security" | "Mobile";
+type FilterCategory = "All" | Project["category"];
 
 export function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<FilterCategory>("All");
 
-  const categories: FilterCategory[] = [
-    "All", "Web", "Cloud", "AI", "Security", "Mobile"
-  ];
+  const categories = useMemo(() => {
+    const projectCategories = [...new Set(projectsData.map((p) => p.category))];
+    return ["All", ...projectCategories] as FilterCategory[];
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All") return projectsData;
@@ -29,13 +31,13 @@ export function ProjectsPage() {
       {/* Editorial Header */}
       <section className="mb-16">
         <span className="font-mono text-xs uppercase tracking-widest text-[#9c9ea0] mb-2 block font-semibold">
-          Engineering Logs
+          Projects
         </span>
         <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-primary leading-tight">
-          Selected Projects
+          My Work
         </h1>
         <p className="font-sans text-lg text-secondary max-w-2xl mt-4 leading-relaxed">
-          A high-precision index of production platforms, distributed databases, and automated AI utilities. Crafted under rigorous modular standards.
+          Hands-on cloud and DevOps projects — CI/CD pipelines, Kubernetes, Docker, Terraform, and AWS.
         </p>
       </section>
 
@@ -44,7 +46,7 @@ export function ProjectsPage() {
         <div className="flex items-center gap-3 border-b border-border-lux pb-4 flex-wrap">
           <div className="flex items-center gap-2 text-[#9c9ea0] pr-4 border-r border-border-lux mr-2">
             <Filter className="w-4 h-4" />
-            <span className="font-mono text-xs uppercase tracking-wider font-semibold">Filter Registry</span>
+            <span className="font-mono text-xs uppercase tracking-wider font-semibold">Filter</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => {
@@ -59,7 +61,7 @@ export function ProjectsPage() {
                       : "bg-[#FFFFFF] border border-border-lux text-secondary hover:text-primary hover:border-primary"
                   }`}
                 >
-                  {category === "All" ? "All Registry" : `${category}`}
+                  {category === "All" ? "All" : category}
                 </button>
               );
             })}
@@ -78,7 +80,7 @@ export function ProjectsPage() {
               className="text-center py-20 bg-white border border-border-lux rounded-lg"
             >
               <p className="font-mono text-sm text-secondary">
-                No verified system architectures match the current registry filter.
+                No projects match this filter.
               </p>
             </motion.div>
           ) : (
@@ -113,17 +115,14 @@ export function ProjectsPage() {
                     <div className="bg-white border border-border-lux rounded-lg overflow-hidden flex flex-col h-full shadow-sm transition-smooth hover:border-accent">
                       
                       {/* Image Frame */}
-                      <div className={`relative ${aspectClass} overflow-hidden bg-surface shrink-0 border-b border-border-lux`}>
-                        <img
-                          src={project.featuredImage}
-                          alt={project.title}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover grayscale transition-all duration-750 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                      <div className={`relative ${aspectClass} overflow-hidden shrink-0 border-b border-border-lux`}>
+                        <ProjectCover
+                          slug={project.slug}
+                          title={project.title}
+                          year={project.year}
+                          className="absolute inset-0 w-full h-full"
+                          iconSize={isFeaturedLayout ? "lg" : "md"}
                         />
-                        <div className="absolute inset-0 bg-primary/5 group-hover:opacity-0 transition-opacity duration-300" />
-                        <span className="absolute top-4 left-4 px-2.5 py-1 bg-white/90 backdrop-blur-sm shadow border border-border-lux font-mono text-[9px] uppercase font-bold tracking-widest text-[#1B365D] rounded">
-                          {project.year}
-                        </span>
                       </div>
 
                       {/* Content Section */}
@@ -159,7 +158,7 @@ export function ProjectsPage() {
                             to={`/projects/${project.slug}`}
                             className="inline-flex items-center gap-1.5 font-display text-[13px] font-bold text-primary hover:text-accent group-hover:underline transition-colors focus:outline-none cursor-pointer"
                           >
-                            <span>Read Deep Docs</span>
+                            <span>View project</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           </Link>
                         </div>

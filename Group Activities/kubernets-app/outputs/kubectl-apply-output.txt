@@ -1,0 +1,5 @@
+# Placeholder — run ./scripts/deploy.sh and save output here
+# Example:
+# kubectl apply -f manifests/namespace.yaml
+# namespace/sample-app created
+# ...

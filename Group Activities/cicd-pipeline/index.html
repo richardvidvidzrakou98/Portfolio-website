@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Nebula | Modern Static Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui, "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+        background: linear-gradient(145deg, #f9faff 0%, #eff2fc 100%);
+        color: #1a1e2b;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      /* custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #e2e8f0;
+        border-radius: 12px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3b4b7a;
+        border-radius: 12px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2c3a60;
+      }
+
+      /* container utility */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* header / navigation */
+      .header {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.02),
+          0 1px 0 rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #1f2b48, #2b3b6e);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: -0.02em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #2d3a5e;
+        transition: color 0.2s ease;
+        font-size: 1rem;
+      }
+      .nav-links a:hover {
+        color: #1b4dbb;
+      }
+      /* cta button style */
+      .btn-outline {
+        border: 1.5px solid #2b3b6e;
+        padding: 0.4rem 1rem;
+        border-radius: 40px;
+        background: transparent;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        background: #2b3b6e;
+        color: white !important;
+        border-color: #2b3b6e;
+      }
+
+      /* hero section */
+      .hero {
+        padding: 5rem 0 4rem 0;
+        text-align: center;
+      }
+      .badge {
+        display: inline-block;
+        background: rgba(43, 59, 110, 0.1);
+        backdrop-filter: blur(2px);
+        padding: 0.3rem 1rem;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #2b3b6e;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.3px;
+      }
+      .hero h1 {
+        font-size: 3.8rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #141e38, #2b3b6e, #1f4a8c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        line-height: 1.2;
+        margin-bottom: 1.2rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: #3a466b;
+        max-width: 650px;
+        margin: 0 auto 2rem auto;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: #1f2b48;
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: #2b3b6e;
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid #a0b2d4;
+        color: #1f2b48;
+        padding: 0.8rem 2rem;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .btn-secondary:hover {
+        border-color: #2b3b6e;
+        background: rgba(43, 59, 110, 0.05);
+      }
+
+      /* featured section */
+      .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #1a1e2b;
+      }
+      .section-sub {
+        text-align: center;
+        color: #5b6a8c;
+        max-width: 650px;
+        margin: -0.5rem auto 3rem auto;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0 3rem;
+      }
+      .card {
+        background: white;
+        border-radius: 32px;
+        padding: 2rem 1.8rem;
+        box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(2px);
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 40px -18px rgba(0, 0, 0, 0.15);
+        border-color: #cddcff;
+      }
+      .card-icon {
+        font-size: 2.8rem;
+        margin-bottom: 1.2rem;
+      }
+      .card h3 {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+      .card p {
+        color: #4a5578;
+        line-height: 1.5;
+      }
+
+      /* stats row */
+      .stats-wrapper {
+        background: linear-gradient(120deg, #f0f4fe, #ffffff);
+        border-radius: 48px;
+        padding: 2.5rem 2rem;
+        margin: 3rem 0 2rem;
+        box-shadow:
+          inset 0 1px 2px rgba(0, 0, 0, 0.02),
+          0 8px 20px rgba(0, 0, 0, 0.03);
+      }
+      .stats-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: center;
+        gap: 2rem;
+      }
+      .stat-item h4 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1f2b48;
+      }
+      .stat-item p {
+        color: #657399;
+        font-weight: 500;
+      }
+
+      /* testimonial / quote */
+      .quote-section {
+        background: #ffffffdb;
+        backdrop-filter: blur(4px);
+        border-radius: 2rem;
+        margin: 4rem 0;
+        padding: 2.8rem 2rem;
+        text-align: center;
+        box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+      }
+      .quote-text {
+        font-size: 1.5rem;
+        font-weight: 450;
+        font-style: normal;
+        max-width: 800px;
+        margin: 0 auto 1.2rem;
+        color: #1a243f;
+        quotes: "“" "”" "‘" "’";
+      }
+      .quote-text::before {
+        content: "“";
+        font-size: 2rem;
+        color: #2b3b6e;
+        margin-right: 0.2rem;
+      }
+      .quote-text::after {
+        content: "”";
+        font-size: 2rem;
+        color: #2b3b6e;
+        vertical-align: top;
+        margin-left: 0.2rem;
+      }
+      .quote-author {
+        font-weight: 600;
+        color: #3a4b76;
+      }
+
+      /* footer */
+      .footer {
+        background: #0f1422;
+        color: #cbd5e6;
+        padding: 3rem 0 2rem;
+        margin-top: 3rem;
+        border-radius: 2rem 2rem 0 0;
+      }
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      .footer-col p {
+        max-width: 260px;
+        margin-top: 0.8rem;
+        font-size: 0.9rem;
+        color: #9aa9c2;
+      }
+      .footer-col h4 {
+        color: white;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .footer-links {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+      .footer-links a {
+        color: #cbd5e6;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: white;
+      }
+      .copyright {
+        text-align: center;
+        border-top: 1px solid #252e48;
+        padding-top: 2rem;
+        font-size: 0.8rem;
+        color: #8f9bb5;
+      }
+
+      /* responsive touches */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 24px;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .nav {
+          flex-direction: column;
+          text-align: center;
+        }
+        .nav-links {
+          gap: 1.2rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .section-title {
+          font-size: 1.8rem;
+        }
+        .quote-text {
+          font-size: 1.2rem;
+        }
+        .stats-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-secondary {
+          padding: 0.6rem 1.2rem;
+          font-size: 0.9rem;
+        }
+        .card {
+          padding: 1.5rem;
+        }
+      }
+
+      /* simple animation on load */
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero,
+      .cards-grid,
+      .stats-wrapper,
+      .quote-section {
+        animation: fadeUp 0.6s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">✦ Nebula</div>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Solutions</a></li>
+            <li><a href="#">Insights</a></li>
+            <li><a href="#" class="btn-outline">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="badge">✨ Redefining digital craft</div>
+          <h1>
+            Design beyond boundaries<br />
+            with clarity & purpose.
+          </h1>
+          <p>
+            We build immersive, responsive, and future-ready static experiences.
+            No fluff — just elegant design and robust code.
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn-primary">Explore work →</a>
+            <a href="#" class="btn-secondary">Learn more</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature Cards Grid -->
+      <div class="container">
+        <h2 class="section-title">What makes the difference</h2>
+        <p class="section-sub">
+          Clean aesthetics, performant layouts, and thoughtful interactions —
+          crafted for modern web.
+        </p>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>Visual harmony</h3>
+            <p>
+              Balanced color systems, fluid typography, and intentional spacing
+              to create interfaces that feel effortless.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Lightning fast</h3>
+            <p>
+              Pure HTML/CSS with no heavy frameworks. Fast loading, smooth
+              scrolling, and native performance.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📱</div>
+            <h3>Fully responsive</h3>
+            <p>
+              Every element adapts beautifully to any device — from large
+              monitors to compact phones.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔧</div>
+            <h3>Modular structure</h3>
+            <p>
+              Well-organized semantic markup and reusable CSS components that
+              are easy to maintain.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats & Highlights -->
+      <div class="container">
+        <div class="stats-wrapper">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <h4>99.9%</h4>
+              <p>Uptime reliability</p>
+            </div>
+            <div class="stat-item">
+              <h4>2.5x</h4>
+              <p>Faster load times</p>
+            </div>
+            <div class="stat-item">
+              <h4>12+</h4>
+              <p>Design awards</p>
+            </div>
+            <div class="stat-item">
+              <h4>∞</h4>
+              <p>Creative potential</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote / Testimonial Section -->
+      <div class="container">
+        <div class="quote-section">
+          <div class="quote-text">
+            Static doesn't mean boring. This page radiates clarity, motion
+            without scripts, and intentional minimalism.
+          </div>
+          <div class="quote-author">— Clara Bennett, Creative Director</div>
+        </div>
+      </div>
+
+      <!-- Additional content block: custom showcase -->
+      <div class="container">
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            margin: 2rem 0 3rem;
+          "
+        >
+          <div style="flex: 1; min-width: 200px">
+            <h3
+              style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem"
+            >
+              ✨ Pure elegance
+            </h3>
+            <p style="color: #3c4870">
+              No JavaScript required — just HTML & CSS delivering a memorable
+              user experience. Focus on what matters: content & usability.
+            </p>
+          </div>
+          <div style="flex: 1; min-width: 200px">
+            <h3
+              style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem"
+            >
+              🌱 Sustainable code
+            </h3>
+            <p style="color: #3c4870">
+              Lightweight and eco-friendly, reducing carbon footprint per visit.
+              Minimal payload, maximum expression.
+            </p>
+          </div>
+          <div style="flex: 1; min-width: 200px">
+            <h3
+              style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem"
+            >
+              🎯 Pixel perfect
+            </h3>
+            <p style="color: #3c4870">
+              Carefully tuned spacing, gradients, and shadows create depth
+              without distraction. Every detail is intentional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <div
+              class="logo"
+              style="
+                color: white;
+                background: none;
+                -webkit-background-clip: unset;
+                background: linear-gradient(135deg, #cddcff, #9bb2e6);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+              "
+            >
+              ✦ Nebula
+            </div>
+            <p>
+              Beyond static — design that speaks. Modern HTML/CSS handcrafted
+              with passion.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="footer-links">
+              <li><a href="#">Work</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Journal</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">Help center</a></li>
+              <li><a href="#">Accessibility</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul class="footer-links">
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2026 Nebula — static HTML/CSS masterpiece. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

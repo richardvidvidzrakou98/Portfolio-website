@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { 
   projectsData 
 } from "../data/projects";
+import { ProjectCover } from "../components/ProjectCover";
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -32,7 +33,6 @@ export function ProjectDetailsPage() {
     { id: "architecture", label: "Architecture" },
     { id: "techstack", label: "Tech Stack" },
     { id: "challenges", label: "Challenges & Solutions" },
-    { id: "gallery", label: "Project Gallery" },
     { id: "lessons", label: "Lessons Learned" }
   ];
 
@@ -75,17 +75,17 @@ export function ProjectDetailsPage() {
     return (
       <div className="max-w-xl mx-auto px-6 py-24 text-center">
         <h2 className="font-display text-4xl font-bold tracking-tight text-primary">
-          Log Entry Missing
+          Project not found
         </h2>
         <p className="font-sans text-sm text-secondary mt-3">
-          The requested engineering record cannot be extracted from active storage pools.
+          This project doesn't exist or may have been moved.
         </p>
         <Link
           to="/projects"
           className="mt-8 inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded font-display text-xs font-bold tracking-wider uppercase focus:outline-none focus:ring-1 focus:ring-accent"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Exit Registry</span>
+          <span>Back to projects</span>
         </Link>
       </div>
     );
@@ -123,7 +123,7 @@ export function ProjectDetailsPage() {
           className="inline-flex items-center gap-2 text-secondary hover:text-primary font-mono text-xs uppercase tracking-wider group focus:outline-none cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          <span>Back to registry listing</span>
+          <span>Back to projects</span>
         </Link>
       </div>
 
@@ -132,7 +132,7 @@ export function ProjectDetailsPage() {
         {/* Sticky side rail navigation (Inspired by Stripe & Vercel docs) */}
         <aside className="hidden lg:block w-60 sticky top-24 shrink-0 border-l border-border-lux pl-4 py-2 mt-40">
           <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-[#9c9ea0] block mb-4">
-            Specification
+            On this page
           </span>
           <nav className="flex flex-col space-y-2.5">
             {sections.map((sec) => {
@@ -157,16 +157,26 @@ export function ProjectDetailsPage() {
 
         {/* Core Case Study Content Canvas */}
         <div className="flex-1 max-w-3xl prose-doc">
+
+          <div className="mb-10 rounded-lg overflow-hidden border border-border-lux">
+            <ProjectCover
+              slug={project.slug}
+              title={project.title}
+              year={project.year}
+              className="aspect-[21/9] w-full"
+              iconSize="lg"
+            />
+          </div>
           
           {/* Header Metadata block */}
           <section id="overview" className="scroll-mt-24 mb-16 border-b border-border-lux pb-12">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-bold bg-accent/5 px-2 py-0.5 rounded">
-                Case Study // {project.year}
+                Case Study · {project.year}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-secondary/40" />
               <span className="font-mono text-[11px] uppercase tracking-wider text-secondary font-medium">
-                {project.category} Architecture
+                {project.category}
               </span>
             </div>
 
@@ -182,7 +192,7 @@ export function ProjectDetailsPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-border-lux">
               <div>
                 <span className="font-mono text-[10px] text-secondary uppercase block mb-1 font-semibold tracking-wider">
-                  Role Assignation
+                  Role
                 </span>
                 <span className="font-display text-sm font-bold text-primary">
                   {project.role}
@@ -198,7 +208,7 @@ export function ProjectDetailsPage() {
               </div>
               <div>
                 <span className="font-mono text-[10px] text-secondary uppercase block mb-1 font-semibold tracking-wider text-accent">
-                  Performance Impact
+                  Key outcome
                 </span>
                 <span className="font-display text-sm font-bold text-[#1B365D] bg-accent/5 px-2 py-0.5 rounded">
                   {project.impact}
@@ -217,7 +227,7 @@ export function ProjectDetailsPage() {
             <div className="bg-white border border-border-lux rounded-lg p-6 my-8 shadow-sm">
               <h4 className="font-display text-sm uppercase tracking-wider font-bold text-primary mb-4 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#1B365D]" />
-                <span>Critical Structural Challenges</span>
+                <span>Key challenges</span>
               </h4>
               <ul className="space-y-3 font-sans text-xs text-secondary">
                 {project.painPoints.map((point, index) => (
@@ -234,7 +244,7 @@ export function ProjectDetailsPage() {
           <section id="goals" className="scroll-mt-24 mb-16 border-b border-border-lux pb-12">
             <h2 className="font-display text-2xl font-bold text-primary mb-4">Goals</h2>
             <p className="font-sans text-sm text-secondary leading-relaxed mb-6">
-              Our target was to implement a rigorous, resilient infrastructure stack optimizing for two main objectives:
+              What I set out to achieve with this project:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
@@ -281,7 +291,7 @@ export function ProjectDetailsPage() {
           <section id="techstack" className="scroll-mt-24 mb-16 border-b border-border-lux pb-12">
             <h2 className="font-display text-2xl font-bold text-primary mb-4">Tech Stack</h2>
             <p className="font-sans text-sm text-secondary leading-relaxed mb-6">
-              The systems are engineered with modern, high-precision technical libraries matching developer best-practices:
+              Tools and technologies used in this project:
             </p>
 
             <div className="bg-white border border-border-lux rounded-lg divide-y divide-border-lux overflow-hidden shadow-sm">
@@ -306,7 +316,7 @@ export function ProjectDetailsPage() {
           <section id="challenges" className="scroll-mt-24 mb-16 border-b border-border-lux pb-12">
             <h2 className="font-display text-2xl font-bold text-primary mb-4">Challenges &amp; Solutions</h2>
             <p className="font-sans text-sm text-secondary leading-relaxed mb-8">
-              Building at scale introduced several tough technical obstacles that required custom mitigations:
+              Problems I ran into and how I solved them:
             </p>
 
             <div className="space-y-8">
@@ -323,39 +333,11 @@ export function ProjectDetailsPage() {
             </div>
           </section>
 
-          {/* Project Gallery */}
-          <section id="gallery" className="scroll-mt-24 mb-16 border-b border-border-lux pb-12">
-            <h2 className="font-display text-2xl font-bold text-primary mb-4 font-semibold">Project Gallery</h2>
-            <p className="font-sans text-sm text-secondary leading-relaxed mb-6">
-              Operational screenshots representing both dynamic container topologies and executive metrics dashboards:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.screenshots.map((s, idx) => {
-                const isWide = idx === 2;
-                const gridClass = isWide ? "md:col-span-2 aspect-[16/9]" : "aspect-square";
-                return (
-                  <div 
-                    key={idx} 
-                    className={`${gridClass} bg-white border border-border-lux rounded-lg overflow-hidden shrink-0 hover:scale-[1.01] transition-smooth`}
-                  >
-                    <img 
-                      src={s.url} 
-                      alt={s.alt} 
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
           {/* Lessons Learned */}
           <section id="lessons" className="scroll-mt-24 mb-16">
             <h2 className="font-display text-2xl font-bold text-primary mb-4 font-semibold">Lessons Learned</h2>
             <p className="font-sans text-sm text-secondary leading-relaxed mb-6">
-              Reflecting on operational telemetry and distributed metrics yielded several critical engineering takeaways:
+              What I took away from this project:
             </p>
 
             <ul className="space-y-3 font-sans text-xs text-secondary list-disc pl-5 leading-relaxed">
@@ -374,7 +356,7 @@ export function ProjectDetailsPage() {
               className="group flex flex-col items-start gap-1 focus:outline-none cursor-pointer"
             >
               <span className="font-mono text-[9px] uppercase tracking-widest text-[#9c9ea0] font-bold">
-                Previous Case Study
+                Previous project
               </span>
               <span className="font-display text-[15px] font-bold text-primary group-hover:text-accent transition-colors flex items-center gap-1.5 mt-0.5">
                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> {prevProject.title}
@@ -386,7 +368,7 @@ export function ProjectDetailsPage() {
               className="group flex flex-col items-end text-right gap-1 focus:outline-none cursor-pointer"
             >
               <span className="font-mono text-[9px] uppercase tracking-widest text-[#9c9ea0] font-bold">
-                Next Case Study
+                Next project
               </span>
               <span className="font-display text-[15px] font-bold text-primary group-hover:text-accent transition-colors flex items-center gap-1.5 mt-0.5">
                 {nextProject.title} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

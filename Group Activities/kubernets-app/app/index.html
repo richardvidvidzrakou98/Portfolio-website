@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kubernetes Sample App</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e8e8e8;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 520px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #4fc3f7; }
+    .subtitle { color: #90a4ae; margin-bottom: 1.5rem; }
+    .badge {
+      display: inline-block;
+      background: #2e7d32;
+      color: #fff;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .info { margin-top: 1.5rem; font-size: 0.9rem; color: #b0bec5; line-height: 1.6; }
+    .info code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Kubernetes Sample App</h1>
+    <p class="subtitle">Node.js running in a Kubernetes cluster</p>
+    <span class="badge">&#10003; Deployment successful</span>
+    <p class="info">
+      This page is served by a Node.js container deployed via Kubernetes.<br />
+      Health check: <code>GET /health</code>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Placeholder — after rolling update, save results here
+# Example:
+# kubectl rollout restart deployment/sample-app -n sample-app
+# kubectl rollout status deployment/sample-app -n sample-app

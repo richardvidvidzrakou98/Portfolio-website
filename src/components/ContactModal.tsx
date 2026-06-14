@@ -99,25 +99,21 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   <Mail className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="font-display text-[20px] font-bold text-white leading-tight">
-                  Let's craft something exceptional.
+                  Let's work together.
                 </h3>
                 <p className="font-sans text-[12px] text-white/70 mt-3 leading-relaxed">
-                  Have a technical problem, architectural query, or a dynamic product request? Get in touch today.
+                  Have a question, a project idea, or just want to connect? Send me a message.
                 </p>
               </div>
 
               <div className="space-y-4 font-sans text-[12px] text-white/80">
                 <div className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>Architecture Design</span>
+                  <span>Web Development</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>Full-stack Development</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>Cloud Deployments</span>
+                  <span>Cloud & DevOps</span>
                 </div>
               </div>
             </div>

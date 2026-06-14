@@ -1,0 +1,4 @@
+# Placeholder — after scaling, save results here
+# Example:
+# kubectl scale deployment/sample-app -n sample-app --replicas=3
+# kubectl get pods -n sample-app

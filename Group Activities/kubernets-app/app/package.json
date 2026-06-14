@@ -1,0 +1,15 @@
+{
+  "name": "kubernetes-sample-app",
+  "version": "1.0.0",
+  "description": "Simple Node.js app for Kubernetes deployment demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

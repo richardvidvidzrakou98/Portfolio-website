@@ -2,16 +2,13 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   Cpu,
-  LineChart,
-  Shield,
-  Terminal,
   Smartphone,
   Database,
   CodeXml,
-  Compass,
   ArrowRight,
 } from "lucide-react";
 import { projectsData, articlesData } from "../data/projects";
+import { ProjectIconBadge } from "../components/ProjectIconBadge";
 import { motion } from "motion/react";
 
 interface LandingPageProps {
@@ -19,18 +16,7 @@ interface LandingPageProps {
 }
 
 export function LandingPage({ onContactClick }: LandingPageProps) {
-  // Extract primary projects
-  const featuredProject = projectsData.find((p) => p.slug === "bookafrica");
-  const secondaryProjects = projectsData.filter((p) => p.slug !== "bookafrica");
-
-  const cardVariants = {
-    hover: {
-      scale: 1.01,
-      backgroundColor: "#F6F5F2",
-      borderColor: "#1B365D",
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
-  };
+  const landingProjects = projectsData.slice(0, 6);
 
   return (
     <motion.div
@@ -54,22 +40,17 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Richard Vidzrakou
             </h1>
             <p className="font-sans text-xl md:text-2xl text-secondary max-w-2xl leading-relaxed">
-              Web Developer • Cloud Engineer •{" "}
-              <span className="text-primary font-semibold">
-                DevOps &amp; Product Builder
-              </span>
-              .
+              Web Developer · Cloud Engineer · DevOps
             </p>
             <p className="font-mono text-sm md:text-base text-secondary max-w-xl leading-relaxed border-l-2 border-accent pl-6 italic">
-              "Building scalable systems, cloud applications, and digital
-              products that solve real-world problems with extreme fidelity."
+              "I build software systems across web and cloud — focused on clarity, reliability, and long-term impact."
             </p>
           </div>
 
           {/* Availability Card */}
           <div className="lg:col-span-4 bg-white border border-border-lux p-8 rounded-lg shadow-sm">
             <h3 className="font-mono text-[11px] uppercase tracking-widest text-secondary mb-6 border-b border-border-lux pb-2 font-semibold">
-              Current Dispatch Status
+              About Me
             </h3>
             <ul className="space-y-4 font-sans text-sm text-primary">
               <li className="flex items-center justify-between pb-3 border-b border-border-lux/60">
@@ -78,11 +59,11 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               </li>
               <li className="flex items-center justify-between pb-3 border-b border-border-lux/60">
                 <span className="text-secondary">Focus</span>
-                <span className="font-semibold">Fullstack Systems</span>
+                <span className="font-semibold">Web & Cloud</span>
               </li>
               <li className="flex items-center justify-between pb-3 border-b border-border-lux/60">
-                <span className="text-secondary">Infrastructure</span>
-                <span className="font-semibold">Cloud Engineering</span>
+                <span className="text-secondary">Skills</span>
+                <span className="font-semibold">DevOps & AWS</span>
               </li>
               <li className="flex items-center justify-between">
                 <span className="text-secondary">Availability</span>
@@ -113,8 +94,7 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
             Core Technical Expertise
           </h2>
           <p className="font-sans text-sm text-secondary mt-3 leading-relaxed">
-            A spectrum of architectural planning, systems safety analysis, and
-            visual design synthesis applied to enterprise applications.
+            What I work with day to day — from writing code to deploying it in the cloud.
           </p>
         </div>
 
@@ -126,8 +106,7 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Software Engineering
             </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Robust architectural design patterns and strict type principles
-              applied to high-concurrency solutions.
+              Clean, well-structured code for web apps and APIs — built to be easy to maintain and extend.
             </p>
           </div>
 
@@ -138,8 +117,7 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Cloud Infrastructure
             </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Provisioning secure AWS/Azure systems with structured Terraform
-              states, Docker clusters, and automated pipelines.
+              AWS, Docker, Kubernetes, Terraform, and CI/CD pipelines — setting up and managing cloud environments.
             </p>
           </div>
 
@@ -150,8 +128,7 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Frontend Systems
             </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Responsive, fully accessible, and performant visual interfaces
-              designed with React, Next.js, and static assets.
+              Fast, responsive websites and interfaces with React — designed to look good on any screen size.
             </p>
           </div>
 
@@ -162,131 +139,70 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Backend Engineering
             </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              High-velocity RESTful / gRPC APIs, distributed transaction
-              pipelines, and secure storage in PostgreSQL/Redis databases.
+              APIs and server-side logic with Python and Node.js — connecting apps to databases and external services.
             </p>
           </div>
         </div>
       </section>
 
       {/* 3. Selected Work */}
-      <section className="py-24 border-b border-border-lux" id="projects">
-        <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4">
+      <section className="py-16 md:py-20 border-b border-border-lux" id="projects">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#9c9ea0] mb-2 block font-semibold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#9c9ea0] mb-1 block font-semibold">
               Selected Work
             </span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-primary">
-              Engineering Case Studies
+            <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-primary">
+              Recent Projects
             </h2>
           </div>
           <Link
             to="/projects"
-            className="group flex items-center gap-1.5 font-display text-sm font-semibold text-accent hover:text-accent-hover transition-colors cursor-pointer"
+            className="group inline-flex items-center gap-1 font-display text-sm font-medium text-accent hover:text-accent-hover transition-colors"
           >
-            <span>View All Engineering Projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span>View all</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
 
-        {/* Featured Project */}
-        {featuredProject && (
-          <div className="group bg-white border border-border-lux rounded-lg overflow-hidden flex flex-col lg:flex-row mb-12 shadow-sm">
-            <div className="lg:w-3/5 overflow-hidden relative">
-              <img
-                src={featuredProject.featuredImage}
-                alt={featuredProject.title}
-                referrerPolicy="no-referrer"
-                className="w-full h-80 lg:h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.02]"
-              />
-              <div className="absolute inset-0 bg-primary/5 group-hover:opacity-0 transition-opacity duration-300" />
-            </div>
-            <div className="lg:w-2/5 p-8 md:p-12 flex flex-col justify-center">
-              <div className="flex justify-between items-start mb-6">
-                <span className="px-2.5 py-1 bg-accent/10 text-accent text-[9px] uppercase font-bold tracking-widest rounded">
-                  Featured Case Study
-                </span>
-                <span className="font-mono text-xs text-secondary">
-                  {featuredProject.year}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {landingProjects.map((project) => (
+            <Link
+              key={project.slug}
+              to={`/projects/${project.slug}`}
+              className="group flex flex-col gap-3 p-4 bg-white border border-border-lux rounded-lg hover:border-accent/40 hover:shadow-sm transition-all duration-200"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <ProjectIconBadge slug={project.slug} size="sm" />
+                <span className="font-mono text-[10px] text-secondary tabular-nums">
+                  {project.year}
                 </span>
               </div>
-              <h3 className="font-display text-3xl font-bold text-primary mb-4">
-                {featuredProject.title}
-              </h3>
-              <p className="text-secondary text-sm mb-8 leading-relaxed">
-                {featuredProject.summary}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {featuredProject.techStack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech.name}
-                    className="px-2 py-1 bg-surface-card border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded"
-                  >
-                    {tech.name}
-                  </span>
-                ))}
-              </div>
-              <Link
-                to={`/projects/${featuredProject.slug}`}
-                className="inline-flex items-center gap-1.5 font-display text-sm font-semibold text-primary hover:text-accent transition-colors cursor-pointer"
-              >
-                <span>Read case study documentation</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        )}
 
-        {/* Bento/Asymmetric Grid for Secondary Projects */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {secondaryProjects.map((project, idx) => {
-            const isWide = idx % 3 === 0;
-            const cardClasses = isWide ? "md:col-span-8" : "md:col-span-4";
-            return (
-              <motion.div
-                key={project.slug}
-                whileHover="hover"
-                variants={cardVariants}
-                className={`${cardClasses} bg-white border border-border-lux p-8 rounded-lg flex flex-col justify-between shadow-sm transition-smooth relative`}
-              >
-                <div>
-                  <div className="flex justify-between items-center mb-10">
-                    <span className="font-mono text-xs text-secondary">
-                      {project.year}
+              <div className="min-w-0 space-y-1">
+                <h3 className="font-display text-[15px] font-semibold text-primary leading-snug group-hover:text-accent transition-colors truncate">
+                  {project.title}
+                </h3>
+                <p className="text-secondary text-xs leading-relaxed line-clamp-2">
+                  {project.summary}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between gap-2 pt-1 border-t border-border-lux/50">
+                <div className="flex flex-wrap gap-1 min-w-0">
+                  {project.techStack.slice(0, 2).map((tech) => (
+                    <span
+                      key={tech.name}
+                      className="px-1.5 py-0.5 bg-surface text-secondary font-mono text-[8px] uppercase tracking-wide rounded truncate max-w-[7rem]"
+                    >
+                      {tech.name}
                     </span>
-                    <span className="px-2.5 py-0.5 bg-[#DCE6F2] text-accent text-[9px] uppercase font-bold tracking-widest rounded-full">
-                      {project.category}
-                    </span>
-                  </div>
-                  <h4 className="font-display text-2xl font-bold text-primary mb-3">
-                    {project.title}
-                  </h4>
-                  <p className="text-secondary text-xs leading-relaxed max-w-md mb-8">
-                    {project.summary}
-                  </p>
+                  ))}
                 </div>
-                <div className="mt-auto pt-6 border-t border-border-lux/60 flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.techStack.slice(0, 2).map((tech) => (
-                      <span
-                        key={tech.name}
-                        className="px-2 py-0.5 border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded"
-                      >
-                        {tech.name}
-                      </span>
-                    ))}
-                  </div>
-                  <Link
-                    to={`/projects/${project.slug}`}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-surface border border-border-lux text-primary hover:bg-primary hover:text-white transition-smooth cursor-pointer focus:outline-none"
-                    aria-label={`View ${project.title}`}
-                  >
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
-            );
-          })}
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-secondary group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -298,11 +214,11 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Thinking
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-primary">
-              Technical Documentation &amp; Essays
+              Notes &amp; Write-ups
             </h2>
           </div>
           <span className="text-secondary font-mono text-xs mt-2 md:mt-0 opacity-60">
-            A deep-dive on scalable architecture
+            Things I learned along the way
           </span>
         </div>
 
@@ -349,9 +265,7 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
             Start a conversation
           </h3>
           <p className="text-[#87a0cd] font-sans text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-            Whether you have a localized technical hurdle, a multi-zone cloud
-            migration plan, or simply want to explore high-precision integration
-            frameworks, my communication channels are open.
+            Have a project in mind, need help with cloud setup, or just want to say hello? I'd love to hear from you.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
