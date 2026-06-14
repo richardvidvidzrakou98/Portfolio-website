@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-display: "Inter Tight", "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-surface: #F6F5F2;
+  --color-surface-card: #FFFFFF;
+  --color-primary: #101010;
+  --color-secondary: #5F6368;
+  --color-accent: #1B365D;
+  --color-accent-hover: #274C77;
+  --color-border-lux: #E6E6E6;
+}
+
+body {
+  background-color: #F6F5F2;
+  color: #101010;
+  font-family: "IBM Plex Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar matching professional layout */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F5F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #E6E6E6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D3D3D3;
+}
+
+/* Custom utility for subtle smooth transitions */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Document prose styling */
+.prose-doc h2 {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 600;
+  color: #101010;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid #E6E6E6;
+  padding-bottom: 0.5rem;
+}
+
+.prose-doc p {
+  line-height: 1.75;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
