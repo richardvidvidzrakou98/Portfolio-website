@@ -34,7 +34,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                 R. Vidzrakou
               </h1>
               <p className="font-mono text-[10px] text-secondary tracking-wider uppercase mt-1">
-                Senior Software Engineer
+                Software | Cloud | DevOps 
               </p>
             </Link>
           </div>

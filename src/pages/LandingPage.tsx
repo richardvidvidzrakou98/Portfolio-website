@@ -9,7 +9,16 @@ import {
 } from "lucide-react";
 import { projectsData, articlesData } from "../data/projects";
 import { ProjectIconBadge } from "../components/ProjectIconBadge";
+import { TypewriterText } from "../components/TypewriterText";
 import { motion } from "motion/react";
+
+const HERO_LINES = [
+  "Hi, I'm Richard Vidzrakou — a Fullstack Developer, Cloud Engineer, and DevOps engineer passionate about building meaningful digital systems.",
+  "My journey started with curiosity — exploring how technology works and how software can solve everyday problems.",
+  "Over time, that curiosity evolved into building web applications, engineering cloud solutions, and creating systems designed to scale.",
+  "Today, I focus on thoughtful execution — building reliable products, improving infrastructure, and turning ideas into practical solutions.",
+  "If you're building something meaningful, exploring possibilities, or solving a tough problem — let's connect.",
+];
 
 interface LandingPageProps {
   onContactClick: () => void;
@@ -42,8 +51,8 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
             <p className="font-sans text-xl md:text-2xl text-secondary max-w-2xl leading-relaxed">
               Web Developer · Cloud Engineer · DevOps
             </p>
-            <p className="font-mono text-sm md:text-base text-secondary max-w-xl leading-relaxed border-l-2 border-accent pl-6 italic">
-              "I build software systems across web and cloud — focused on clarity, reliability, and long-term impact."
+            <p className="font-mono text-sm md:text-base text-secondary max-w-xl leading-relaxed border-l-2 border-accent pl-6 italic min-h-[7rem] md:min-h-[5.5rem]">
+              <TypewriterText texts={HERO_LINES} pauseDuration={3200} />
             </p>
           </div>
 
