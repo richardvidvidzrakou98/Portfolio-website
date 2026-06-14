@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { 
-  ArrowUpRight, 
-  Cpu, 
-  LineChart, 
-  Shield, 
-  Terminal, 
-  Smartphone, 
+import {
+  ArrowUpRight,
+  Cpu,
+  LineChart,
+  Shield,
+  Terminal,
+  Smartphone,
   Database,
   CodeXml,
   Compass,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { projectsData, articlesData } from "../data/projects";
 import { motion } from "motion/react";
@@ -20,20 +20,20 @@ interface LandingPageProps {
 
 export function LandingPage({ onContactClick }: LandingPageProps) {
   // Extract primary projects
-  const featuredProject = projectsData.find(p => p.slug === "bookafrica");
-  const secondaryProjects = projectsData.filter(p => p.slug !== "bookafrica");
+  const featuredProject = projectsData.find((p) => p.slug === "bookafrica");
+  const secondaryProjects = projectsData.filter((p) => p.slug !== "bookafrica");
 
   const cardVariants = {
     hover: {
       scale: 1.01,
       backgroundColor: "#F6F5F2",
       borderColor: "#1B365D",
-      transition: { duration: 0.3, ease: "easeOut" }
-    }
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -41,7 +41,10 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24"
     >
       {/* 1. Identity Section */}
-      <section className="pt-8 md:pt-16 pb-24 border-b border-border-lux" id="identity">
+      <section
+        className="pt-8 md:pt-16 pb-24 border-b border-border-lux"
+        id="identity"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-8 space-y-8">
             <span className="font-mono text-xs font-semibold tracking-wider text-accent uppercase bg-accent/5 px-3 py-1 rounded">
@@ -51,10 +54,15 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               Richard Vidzrakou
             </h1>
             <p className="font-sans text-xl md:text-2xl text-secondary max-w-2xl leading-relaxed">
-              Fullstack Developer • Software Engineer • <span className="text-primary font-semibold">Cloud &amp; Product Builder</span>.
+              Web Developer • Cloud Engineer •{" "}
+              <span className="text-primary font-semibold">
+                DevOps &amp; Product Builder
+              </span>
+              .
             </p>
             <p className="font-mono text-sm md:text-base text-secondary max-w-xl leading-relaxed border-l-2 border-accent pl-6 italic">
-              "Building scalable systems, cloud applications, and digital products that solve real-world problems with extreme fidelity."
+              "Building scalable systems, cloud applications, and digital
+              products that solve real-world problems with extreme fidelity."
             </p>
           </div>
 
@@ -105,7 +113,8 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
             Core Technical Expertise
           </h2>
           <p className="font-sans text-sm text-secondary mt-3 leading-relaxed">
-            A spectrum of architectural planning, systems safety analysis, and visual design synthesis applied to enterprise applications.
+            A spectrum of architectural planning, systems safety analysis, and
+            visual design synthesis applied to enterprise applications.
           </p>
         </div>
 
@@ -113,36 +122,48 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
           {/* Software Engineering */}
           <div className="p-8 bg-white border border-border-lux flex flex-col gap-4 transition-smooth hover:border-accent">
             <CodeXml className="text-accent w-8 h-8 shrink-0" />
-            <h4 className="font-display text-[18px] font-bold text-primary">Software Engineering</h4>
+            <h4 className="font-display text-[18px] font-bold text-primary">
+              Software Engineering
+            </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Robust architectural design patterns and strict type principles applied to high-concurrency solutions.
+              Robust architectural design patterns and strict type principles
+              applied to high-concurrency solutions.
             </p>
           </div>
 
           {/* Cloud Infrastructure */}
           <div className="p-8 bg-white border border-border-lux flex flex-col gap-4 transition-smooth hover:border-accent">
             <Cpu className="text-accent w-8 h-8 shrink-0" />
-            <h4 className="font-display text-[18px] font-bold text-primary">Cloud Infrastructure</h4>
+            <h4 className="font-display text-[18px] font-bold text-primary">
+              Cloud Infrastructure
+            </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Provisioning secure AWS/Azure systems with structured Terraform states, Docker clusters, and automated pipelines.
+              Provisioning secure AWS/Azure systems with structured Terraform
+              states, Docker clusters, and automated pipelines.
             </p>
           </div>
 
           {/* Frontend Systems */}
           <div className="p-8 bg-white border border-border-lux flex flex-col gap-4 transition-smooth hover:border-accent">
             <Smartphone className="text-accent w-8 h-8 shrink-0" />
-            <h4 className="font-display text-[18px] font-bold text-primary">Frontend Systems</h4>
+            <h4 className="font-display text-[18px] font-bold text-primary">
+              Frontend Systems
+            </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              Responsive, fully accessible, and performant visual interfaces designed with React, Next.js, and static assets.
+              Responsive, fully accessible, and performant visual interfaces
+              designed with React, Next.js, and static assets.
             </p>
           </div>
 
           {/* Backend Engineering */}
           <div className="p-8 bg-white border border-border-lux flex flex-col gap-4 transition-smooth hover:border-accent">
             <Database className="text-accent w-8 h-8 shrink-0" />
-            <h4 className="font-display text-[18px] font-bold text-primary">Backend Engineering</h4>
+            <h4 className="font-display text-[18px] font-bold text-primary">
+              Backend Engineering
+            </h4>
             <p className="text-secondary text-xs leading-relaxed">
-              High-velocity RESTful / gRPC APIs, distributed transaction pipelines, and secure storage in PostgreSQL/Redis databases.
+              High-velocity RESTful / gRPC APIs, distributed transaction
+              pipelines, and secure storage in PostgreSQL/Redis databases.
             </p>
           </div>
         </div>
@@ -185,7 +206,9 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
                 <span className="px-2.5 py-1 bg-accent/10 text-accent text-[9px] uppercase font-bold tracking-widest rounded">
                   Featured Case Study
                 </span>
-                <span className="font-mono text-xs text-secondary">{featuredProject.year}</span>
+                <span className="font-mono text-xs text-secondary">
+                  {featuredProject.year}
+                </span>
               </div>
               <h3 className="font-display text-3xl font-bold text-primary mb-4">
                 {featuredProject.title}
@@ -195,7 +218,10 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               </p>
               <div className="flex flex-wrap gap-2 mb-8">
                 {featuredProject.techStack.slice(0, 3).map((tech) => (
-                  <span key={tech.name} className="px-2 py-1 bg-surface-card border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded">
+                  <span
+                    key={tech.name}
+                    className="px-2 py-1 bg-surface-card border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded"
+                  >
                     {tech.name}
                   </span>
                 ))}
@@ -225,7 +251,9 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
               >
                 <div>
                   <div className="flex justify-between items-center mb-10">
-                    <span className="font-mono text-xs text-secondary">{project.year}</span>
+                    <span className="font-mono text-xs text-secondary">
+                      {project.year}
+                    </span>
                     <span className="px-2.5 py-0.5 bg-[#DCE6F2] text-accent text-[9px] uppercase font-bold tracking-widest rounded-full">
                       {project.category}
                     </span>
@@ -240,7 +268,10 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
                 <div className="mt-auto pt-6 border-t border-border-lux/60 flex items-center justify-between">
                   <div className="flex flex-wrap gap-1.5">
                     {project.techStack.slice(0, 2).map((tech) => (
-                      <span key={tech.name} className="px-2 py-0.5 border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded">
+                      <span
+                        key={tech.name}
+                        className="px-2 py-0.5 border border-border-lux text-secondary font-mono text-[9px] uppercase tracking-wider rounded"
+                      >
                         {tech.name}
                       </span>
                     ))}
@@ -318,7 +349,9 @@ export function LandingPage({ onContactClick }: LandingPageProps) {
             Start a conversation
           </h3>
           <p className="text-[#87a0cd] font-sans text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-            Whether you have a localized technical hurdle, a multi-zone cloud migration plan, or simply want to explore high-precision integration frameworks, my communication channels are open.
+            Whether you have a localized technical hurdle, a multi-zone cloud
+            migration plan, or simply want to explore high-precision integration
+            frameworks, my communication channels are open.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
