@@ -1,11 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { 
   User, 
-  Briefcase, 
-  BookOpen, 
+  Folder, 
   Mail, 
   Home, 
-  Grid, 
   Terminal
 } from "lucide-react";
 
@@ -19,7 +17,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
 
   const links = [
     { to: "/", label: "Overview", icon: User },
-    { to: "/projects", label: "Projects", icon: Briefcase },
+    { to: "/projects", label: "Projects", icon: Folder },
   ];
 
   return (
@@ -125,7 +123,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
           }`}
           aria-label="Projects"
         >
-          <Grid className="w-5 h-5" />
+          <Folder className="w-5 h-5" />
         </Link>
         <button
           onClick={onContactClick}
